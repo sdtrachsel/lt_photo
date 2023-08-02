@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAlbums } from "../../apiCalls";
 import { AlbumCard } from "../AlbumCard/AlbumCard";
+import { Error } from "../Error/Error";
 
 export const Albums = ({ albums, setAlbums }) => {
   const [isLoading, setLoading] = useState(true)
@@ -12,31 +13,30 @@ export const Albums = ({ albums, setAlbums }) => {
     }
 
     const cards = albums.map(album => {
-      return <AlbumCard key={album.id} albumId={album.id} title={album.title}/>
+      return <AlbumCard key={album.id} albumId={album.id} title={album.title} />
     })
 
     return cards
   }
 
-    const fetchAlbums = async () => {
-      try {
-        const data = await getAlbums()
-        setAlbums(data)
-        setLoading(false)    
-      } catch (err) {
-        setError(true)
-      }
+  const fetchAlbums = async () => {
+    try {
+      const data = await getAlbums()
+      setAlbums(data)
+      setLoading(false)
+    } catch (err) {
+      setError(true)
     }
-
-    useEffect(() => {
-      fetchAlbums()
-    }, [])
-
-    return (
-      <section>
-        <h1>Album listing Page</h1>
-        {albumCards()}
-      </section>
-    )
   }
+
+  useEffect(() => {
+    fetchAlbums()
+  }, [])
+
+  return (
+    <section>
+      {error ? <Error /> : albumCards()}
+    </section>
+  )
+}
 
