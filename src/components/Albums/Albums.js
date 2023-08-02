@@ -11,11 +11,9 @@ export const Albums = ({ albums, setAlbums }) => {
     if (isLoading) {
       return <div>Loading...</div>
     }
-
     const cards = albums.map(album => {
       return <AlbumCard key={album.id} albumId={album.id} title={album.title} />
     })
-
     return cards
   }
 
@@ -33,9 +31,13 @@ export const Albums = ({ albums, setAlbums }) => {
     fetchAlbums()
   }, [])
 
+  if(error){
+    return <Error />
+  }
+
   return (
-    <section>
-      {error ? <Error /> : albumCards()}
+    <section className="grid grid-cols-4 auto-rows-auto gap-4">
+       {albumCards()}
     </section>
   )
 }
