@@ -1,22 +1,27 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements
- } from "react-router-dom";
-
+import { Route, Switch } from "react-router-dom";
+import { Header } from "../Header/Header";
 import { Album } from "../Album/Album";
 import { Albums } from "../Albums/Albums";
-import { RootLayout } from "../../layouts/RootLayout";
+import { useEffect, useState } from "react";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<RootLayout />} >
-      <Route path="/" element={<Albums />} />
-      <Route path="album" element={<Album />} />
-    </Route>
-  )
-)
 
 function App() {
+  const [albums, setAlbums] = useState([]);
+  const [selectedAlbum, setSelectedAlbum] = useState(null);
+
   return (
-    <RouterProvider router={router}/>
+    <main>
+      <Header />
+      <Switch >
+        <Route exact path="/" render={() =>
+          <Albums
+            albums={albums}
+            setAlbums={setAlbums}
+            setSelectedAlbum={setSelectedAlbum}
+          />} />
+        <Route path="/album" render={() => <Album />} />
+      </Switch>
+    </main>
   );
 }
 
