@@ -19,7 +19,7 @@ function App() {
             setAlbums={setAlbums}
             setSelectedAlbum={setSelectedAlbum}
           />} />
-        <Route path="/album" render={() => <Album />} />
+        <Route path="/album/:id" render={() => <Album />} />
       </Switch>
     </main>
   );
