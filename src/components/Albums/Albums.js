@@ -3,7 +3,8 @@ import { getAlbums } from "../../apiCalls";
 import { AlbumCard } from "../AlbumCard/AlbumCard";
 import { Error } from "../Error/Error";
 
-export const Albums = ({ albums, setAlbums }) => {
+export const Albums = () => {
+  const [albums, setAlbums] = useState([]);
   const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
