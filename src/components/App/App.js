@@ -10,7 +10,7 @@ function App() {
     <main>
       <Header />
       <Switch >
-        <Route exact path="/album/:albumId/:photoId" render={()=> <Photo />} />
+        <Route exact path="/photo/:photoId" render={()=> <Photo />} />
         <Route exact path="/album/:albumId" render={() => <Album />} />
         <Route exact path="/" render={() =><Albums />} />
         <Route path="*" render={()=> <Error />} />

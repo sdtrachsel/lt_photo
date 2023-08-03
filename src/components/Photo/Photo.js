@@ -8,14 +8,8 @@ export const Photo =() =>{
   const [photo, setPhoto] = useState([]);
   const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('');
   let { photoId } = useParams()
-
-  const photoDisplay = () => {
-    if (isLoading) {
-      return <div>Loading...</div>
-    }
-    
-  }
 
   const fetchPhoto = async () => {
     try {
@@ -24,6 +18,7 @@ export const Photo =() =>{
       setLoading(false)
     } catch (err) {
       setError(true)
+      setErrorMsg(err.message);
     }
   }
 
@@ -31,11 +26,15 @@ export const Photo =() =>{
     fetchPhoto()
   }, [])
 
-  if(error){
-    return <Error />
+  if(isLoading) {
+    return <div>Loading...</div>
   }
 
-  return(
+  if(error){
+    return <Error errorMsg={errorMsg} />
+  }
+
+  return( 
     <section> 
       <h1>{`${photo.id} ${photo.title}`} </h1>
       <img src={photo.url} alt={photo.title} />

@@ -6,7 +6,7 @@ export const PhotoCard = ({photoId, title, thumbnail}) => {
   let match = useRouteMatch();
 
   return(
-    <Link to={`${match.url}/${photoId}`} >
+    <Link to={`/photo/${photoId}`} >
     <section>
         <img src={thumbnail} alt={title} />
         <div>
