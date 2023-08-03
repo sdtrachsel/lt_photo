@@ -1,8 +1,8 @@
-export const Error = () =>{
+export const Error = ({errorMsg = 'We are currently experiencing issues. Please try again later'}) =>{
   return(
     <section>
-      <h2>Something went wrong...</h2>
-      <p>We are currently experiancing issues. Please try again later</p>
+      <h2>Opppsss...</h2>
+      <p>{errorMsg}</p>
     </section>
   )
 }

@@ -7,6 +7,7 @@ import { PhotoCard } from "../PhotoCard/PhotoCard";
 export const Album = () => {
   const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState(false)
+  const [errorMsg, setErrorMsg] = useState('');
   const [photos, setPhotos] = useState([])
   let { albumId } = useParams()
 
@@ -17,6 +18,7 @@ export const Album = () => {
       setLoading(false)
     } catch (err) {
       setError(true)
+      setErrorMsg(err.message);
     }
   }
 
@@ -41,7 +43,7 @@ export const Album = () => {
   }, [])
 
   if (error) {
-    return <Error />
+    return <Error errorMsg={errorMsg} />
   }
 
   return (
