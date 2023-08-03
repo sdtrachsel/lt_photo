@@ -4,7 +4,38 @@ export const getAlbums = () => {
       if (!res.ok) {
         throw new Error(res)
       }
-
       return res.json()
     })
+}
+
+export const getAlbum =(id)=>{
+  return fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(res)
+      }
+      return res.json()
+    })
+    .then((data) => {
+      if (!data || data.length === 0) {
+        throw new Error("This album doesn't exist or contains no photos.");
+      }
+      return data;
+    });
+}
+
+export const getPhoto =(id)=>{
+  return fetch(`https://jsonplaceholder.typicode.com/photos/${id}`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(res)
+      }
+      return res.json()
+    })
+    .then((data) => {
+      if (!data || data.length === 0) {
+        throw new Error("This photo doesn't exist.");
+      }
+      return data;
+    });
 }

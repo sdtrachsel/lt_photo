@@ -2,24 +2,18 @@ import { Route, Switch } from "react-router-dom";
 import { Header } from "../Header/Header";
 import { Album } from "../Album/Album";
 import { Albums } from "../Albums/Albums";
-import { useEffect, useState } from "react";
-
+import { Photo } from "../Photo/Photo";
+import { Error } from "../Error/Error";
 
 function App() {
-  const [albums, setAlbums] = useState([]);
-  const [selectedAlbum, setSelectedAlbum] = useState(null);
-
   return (
     <main>
       <Header />
       <Switch >
-        <Route exact path="/" render={() =>
-          <Albums
-            albums={albums}
-            setAlbums={setAlbums}
-            setSelectedAlbum={setSelectedAlbum}
-          />} />
-        <Route path="/album" render={() => <Album />} />
+        <Route exact path="/album/:albumId/:photoId" render={()=> <Photo />} />
+        <Route exact path="/album/:albumId" render={() => <Album />} />
+        <Route exact path="/" render={() =><Albums />} />
+        <Route path="*" render={()=> <Error />} />
       </Switch>
     </main>
   );
