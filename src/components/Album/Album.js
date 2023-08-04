@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getAlbum } from "../../apiCalls";
 import { Error } from "../Error/Error";
+import { Loader } from "../Loader/Loader";
 import { PhotoCard } from "../PhotoCard/PhotoCard";
 
 export const Album = () => {
@@ -24,7 +25,7 @@ export const Album = () => {
 
   const photoCards = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return <Loader />
     }
     const cards = photos.map(photo => {
       return <PhotoCard

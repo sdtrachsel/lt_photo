@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAlbums } from "../../apiCalls";
 import { AlbumCard } from "../AlbumCard/AlbumCard";
+import { Loader } from "../Loader/Loader";
 import { Error } from "../Error/Error";
 
 export const Albums = () => {
@@ -10,7 +11,7 @@ export const Albums = () => {
 
   const albumCards = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return <Loader />
     }
     const cards = albums.map(album => {
       return <AlbumCard key={album.id} albumId={album.id} title={album.title} />

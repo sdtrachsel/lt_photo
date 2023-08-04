@@ -3,7 +3,6 @@ import { Header } from "../Header/Header";
 import { Album } from "../Album/Album";
 import { Albums } from "../Albums/Albums";
 import { Photo } from "../Photo/Photo";
-import { Error } from "../Error/Error";
 import { PageNotFound } from "../PageNotFound/PageNotFound";
 
 function App() {

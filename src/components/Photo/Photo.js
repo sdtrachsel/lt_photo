@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Error } from "../Error/Error";
 import { getPhoto } from "../../apiCalls";
+import { Loader } from "../Loader/Loader";
 
 export const Photo = () => {
   const [photo, setPhoto] = useState([]);
@@ -27,7 +28,7 @@ export const Photo = () => {
   }, [])
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   if (error) {
