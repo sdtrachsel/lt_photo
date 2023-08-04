@@ -6,14 +6,19 @@ import { Error } from "../Error/Error";
 
 export const Albums = () => {
   const [albums, setAlbums] = useState([]);
-  const [isLoading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const albumCards = () => {
     if (isLoading) {
       return <Loader />
     }
-    const cards = albums.map(album => {
+    const filteredAlbums = albums.filter(album => {
+      return album.title.toLowerCase().includes(searchValue.toLowerCase()) || album.id.toString().includes(searchValue);
+    });
+
+    const cards = filteredAlbums.map(album => {
       return <AlbumCard key={album.id} albumId={album.id} title={album.title} />
     })
     return cards
@@ -33,14 +38,27 @@ export const Albums = () => {
     fetchAlbums()
   }, [])
 
-  if(error){
+  if (error) {
     return <Error />
   }
 
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-4">
-       {albumCards()}
-    </section>
+    <div>
+      <section className="p-4">
+        <label htmlFor="search" className="font-raleway font-semibold text-2xl text-orange pr-2">Search:</label>
+        <input
+          id="search"
+          type="search"
+          value={searchValue}
+          onChange={(event) => setSearchValue(event.target.value)}
+          placeholder="Search by Album Title or ID"
+          className="w-3/5 h-8 p-2 rounded-lg"
+        />
+      </section>
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-4">
+        {albumCards()}
+      </section>
+    </div>
   )
 }
 
