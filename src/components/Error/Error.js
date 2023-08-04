@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Error = ({ errorMsg }) => {
   const message = errorMsg !== undefined && errorMsg !== ''
     ? errorMsg
@@ -10,3 +12,7 @@ export const Error = ({ errorMsg }) => {
     </section>
   )
 }
+
+Error.propTypes = {
+  errorMsg: PropTypes.string,
+};

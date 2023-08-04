@@ -1,10 +1,8 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
-import { useRouteMatch } from "react-router-dom";
 
 export const PhotoCard = ({ photoId, title, thumbnail }) => {
-  let match = useRouteMatch();
-
   return (
     <Link to={`/photo/${photoId}`} >
       <section className="p-2 flex flex-col w-full border-2 border-transparent  hover:border-orange rounded-lg bg-purple-300 overflow-hidden">
@@ -22,3 +20,9 @@ export const PhotoCard = ({ photoId, title, thumbnail }) => {
     </Link>
   )
 }
+
+PhotoCard.propTypes = {
+  photoId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+};
