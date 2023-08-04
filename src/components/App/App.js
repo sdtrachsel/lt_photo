@@ -7,7 +7,7 @@ import { Error } from "../Error/Error";
 
 function App() {
   return (
-    <main className="p-6 bg-purple-400">
+    <main className="p-6 bg-purple-400 min-h-screen ">
       <Header />
       <Switch >
         <Route exact path="/photo/:photoId" render={()=> <Photo />} />
