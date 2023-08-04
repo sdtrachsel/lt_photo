@@ -4,6 +4,7 @@ import { Album } from "../Album/Album";
 import { Albums } from "../Albums/Albums";
 import { Photo } from "../Photo/Photo";
 import { Error } from "../Error/Error";
+import { PageNotFound } from "../PageNotFound/PageNotFound";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <Route exact path="/photo/:photoId" render={()=> <Photo />} />
         <Route exact path="/album/:albumId" render={() => <Album />} />
         <Route exact path="/" render={() =><Albums />} />
-        <Route path="*" render={()=> <Error />} />
+        <Route path="*" render={()=> <PageNotFound />} />
       </Switch>
     </main>
   );
