@@ -20,6 +20,7 @@ export const Photo = () => {
     } catch (err) {
       setError(true)
       setErrorMsg(err.message);
+      setLoading(false)
     }
   }
 

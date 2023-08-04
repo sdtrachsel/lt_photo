@@ -27,14 +27,11 @@ export const getAlbum =(id)=>{
 export const getPhoto =(id)=>{
   return fetch(`https://jsonplaceholder.typicode.com/photos/${id}`)
     .then((res) => {
-      if(res.status === 404){
+      if(res.status == 404){
         throw new Error(`Not found. This photo doesn't exist.`);
       } else if (!res.ok) {
         throw new Error(res);
       }
       return res.json()
     })
-    .then((data) => {
-      return data;
-    });
 }
