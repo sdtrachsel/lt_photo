@@ -9,7 +9,9 @@ export const Album = () => {
   const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState(false)
   const [errorMsg, setErrorMsg] = useState('');
-  const [photos, setPhotos] = useState([])
+  const [photos, setPhotos] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+
   let { albumId } = useParams()
 
   const fetchAlbum = async () => {
@@ -27,7 +29,12 @@ export const Album = () => {
     if (isLoading) {
       return <Loader />
     }
-    const cards = photos.map(photo => {
+  
+    const filteredPhotos = photos.filter(photo => {
+      return photo.title.toLowerCase().includes(searchValue.toLowerCase()) || photo.id.toString().includes(searchValue);
+    })
+    
+    const cards = filteredPhotos.map(photo => {
       return <PhotoCard
         key={photo.id}
         photoId={photo.id}
@@ -48,11 +55,22 @@ export const Album = () => {
   }
 
   return (
-    <>
+    <div>
+      <section className="p-4">
+        <label htmlFor="search" className="font-raleway font-semibold text-2xl text-orange pr-2">Search:</label>
+        <input
+          id="search"
+          type="search"
+          value={searchValue}
+          onChange={(event) => setSearchValue(event.target.value)}
+          placeholder="Search by Photo Title or ID"
+          className="w-3/5 h-8 p-2 rounded-lg"
+        />
+      </section>
       <h2 className="p-2 font-raleway font-semibold text-3xl text-orange">Album {albumId} </h2>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4">
         {photoCards()}
       </section>
-    </>
+    </div>
   )
 }
