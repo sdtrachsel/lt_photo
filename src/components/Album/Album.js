@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getAlbum } from "../../apiCalls";
 import { Error } from "../Error/Error";
+import { Loader } from "../Loader/Loader";
 import { PhotoCard } from "../PhotoCard/PhotoCard";
 
 export const Album = () => {
@@ -24,7 +25,7 @@ export const Album = () => {
 
   const photoCards = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return <Loader />
     }
     const cards = photos.map(photo => {
       return <PhotoCard
@@ -48,8 +49,8 @@ export const Album = () => {
 
   return (
     <>
-      <h2>Album {albumId} </h2>
-      <section className="grid grid-cols-3 auto-rows-auto gap-4">
+      <h2 className="p-2 font-raleway font-semibold text-3xl text-orange">Album {albumId} </h2>
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4">
         {photoCards()}
       </section>
     </>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getAlbums } from "../../apiCalls";
 import { AlbumCard } from "../AlbumCard/AlbumCard";
+import { Loader } from "../Loader/Loader";
 import { Error } from "../Error/Error";
 
 export const Albums = () => {
@@ -10,7 +11,7 @@ export const Albums = () => {
 
   const albumCards = () => {
     if (isLoading) {
-      return <div>Loading...</div>
+      return <Loader />
     }
     const cards = albums.map(album => {
       return <AlbumCard key={album.id} albumId={album.id} title={album.title} />
@@ -37,7 +38,7 @@ export const Albums = () => {
   }
 
   return (
-    <section className="grid grid-cols-4 auto-rows-auto gap-4">
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-4">
        {albumCards()}
     </section>
   )

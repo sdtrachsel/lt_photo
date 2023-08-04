@@ -5,8 +5,8 @@ import { Link } from "react-router-dom"
 export const Header = () => {
   return (
     <header >
-      <Link to='/'>
-        <img className="w-[75px] cursor-pointer" src={logo} alt="logo" />
+      <Link to='/' className="inline-block">
+        <img className="w-fit cursor-pointer" src={logo} alt="logo" />
       </Link>
     </header>
   )

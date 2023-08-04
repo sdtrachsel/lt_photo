@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Error } from "../Error/Error";
 import { getPhoto } from "../../apiCalls";
+import { Loader } from "../Loader/Loader";
 
-export const Photo =() =>{
+export const Photo = () => {
   const [photo, setPhoto] = useState([]);
   const [isLoading, setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -26,17 +27,24 @@ export const Photo =() =>{
     fetchPhoto()
   }, [])
 
-  if(isLoading) {
-    return <div>Loading...</div>
+  if (isLoading) {
+    return <Loader />
   }
 
-  if(error){
+  if (error) {
     return <Error errorMsg={errorMsg} />
   }
 
-  return( 
-    <section> 
-      <h1>{`${photo.id} ${photo.title}`} </h1>
+  return (
+    <section className="flex flex-col justify-center border border-white">
+      <div className="flex">
+        <div className="flex justify-center items-center bg-orange  w-1/6">
+          <p className="font-raleway font-semibold text-2xl text-purple-300">{photoId}</p>
+        </div>
+        <div className="flex justify-center items-center w-5/6 h-20 p-2 space-x-1 bg-purple-200 ">
+          <p className="font-raleway text-white text-center text-2xl">{photo.title}</p>
+        </div>
+      </div>
       <img src={photo.url} alt={photo.title} />
     </section>
   )
