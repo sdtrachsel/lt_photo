@@ -50,7 +50,7 @@ export const Album = () => {
   return (
     <>
       <h2 className="p-2 font-raleway font-semibold text-3xl text-orange">Album {albumId} </h2>
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-4">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4">
         {photoCards()}
       </section>
     </>
