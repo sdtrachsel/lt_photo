@@ -74,7 +74,7 @@ describe("Album component", () => {
     await waitFor(() => expect(screen.getByText("Error")).toBeInTheDocument());
   });
 
-  it(" should show PhotoCard components when fetch succeeds", async () => {
+  it("should show PhotoCard components when fetch succeeds", async () => {
 
     getAlbum.mockResolvedValueOnce(mockPhotos);
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter, useParams } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import { AlbumCard } from "../AlbumCard";
 
 const MockAlbumCard = ({ albumId, title }) => {
