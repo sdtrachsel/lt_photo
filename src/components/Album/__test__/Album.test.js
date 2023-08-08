@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, act } from "@testing-library/react";
 import { BrowserRouter, useParams } from "react-router-dom";
 import { Album } from "../Album";
 import { getAlbum } from "../../../apiCalls";
@@ -49,16 +49,21 @@ describe("Album component", () => {
   it("should show loader when loading", async () => {
     getAlbum.mockResolvedValueOnce([]);
     render(MockAlbum());
-    expect(screen.getByText("Loading")).toBeInTheDocument();
-  });
+
+    await act(async () => {
+        await waitFor(() => expect(screen.getByText("Loading")).toBeInTheDocument());
+    });
+});
 
   it("should show error when fetch fails", async () => {
-    const mockErrorMsg = "Error fetching album";
+const mockErrorMsg = "Error fetching album";
     getAlbum.mockRejectedValueOnce({ message: mockErrorMsg });
-    render(MockAlbum());
-    await waitFor(() => {
-      expect(screen.getByText("Error")).toBeInTheDocument();
+    
+    await act(async () => {
+      render(MockAlbum());
     });
+
+    await waitFor(() => expect(screen.getByText("Error")).toBeInTheDocument());
   });
 
   it(" should show PhotoCard components when fetch succeeds", async () => {
@@ -77,9 +82,11 @@ describe("Album component", () => {
       },
     ];
     getAlbum.mockResolvedValueOnce(mockPhotos);
-    render(MockAlbum());
-    await waitFor(() => {
-      expect(screen.getAllByText("PhotoCard")).toHaveLength(mockPhotos.length);
+    
+    await act(async () => {
+      render(MockAlbum());
     });
+
+    await waitFor(() => expect(screen.getAllByText("PhotoCard")).toHaveLength(mockPhotos.length));
   });
 });
