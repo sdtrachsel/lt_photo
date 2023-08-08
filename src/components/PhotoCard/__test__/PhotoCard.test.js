@@ -26,6 +26,11 @@ describe("PhotoCard", () => {
   });
 
   it("should render a photo's id", () => {
+    const thumbnail = screen.getByAltText(mockTitle);
+    expect(thumbnail).toHaveAttribute("src", mockThumbnail);
+  });
+
+  it("should render a photo's thumbnail", () => {
     const idElement = screen.getByText(mockPhotoId);
     expect(idElement).toBeVisible();
   });
