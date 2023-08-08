@@ -25,12 +25,6 @@ jest.mock("../../Error/Error", () => ({
   }
 }));
 
-// jest.mock("../../AlbumCard/AlbumCard", () => ({
-//   AlbumCard: () => {
-//     return <div>Album Card</div>
-//   }
-// }));
-
 const MockAlbums = () => {
   return (
     <BrowserRouter>
@@ -106,5 +100,4 @@ describe("Albums componenet", () => {
       expect(screen.getByText(/error/i)).toBeInTheDocument();
     });
   });
-
 })
