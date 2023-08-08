@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 export const AlbumCard = ({ albumId, title }) => {
@@ -17,3 +18,8 @@ export const AlbumCard = ({ albumId, title }) => {
     </Link>
   )
 }
+
+AlbumCard.propTypes = {
+  albumId: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+};
