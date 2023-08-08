@@ -14,6 +14,7 @@ const MockAlbumCard = ({ albumId, title }) => {
 describe("AlbumCard", () => {
   const mockAlbumId = 4;
   const mockAlbumTitle = "Test Album";
+  
   beforeEach(() => {
     render(<MockAlbumCard albumId={mockAlbumId} title={mockAlbumTitle} />);
   });
