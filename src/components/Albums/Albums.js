@@ -44,7 +44,7 @@ export const Albums = () => {
 
   return (
     <div>
-      <section className="p-4">
+      <section className="flex p-4">
         <label htmlFor="search" className="font-raleway font-semibold text-2xl text-orange pr-2">Search:</label>
         <input
           id="search"
@@ -52,7 +52,7 @@ export const Albums = () => {
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
           placeholder="Search by Album Title or ID"
-          className="w-3/5 h-8 p-2 rounded-lg"
+          className="w-full h-8 p-2 rounded-lg"
         />
       </section>
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-4">
