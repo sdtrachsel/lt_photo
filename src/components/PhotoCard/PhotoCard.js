@@ -4,18 +4,18 @@ import { Link } from "react-router-dom";
 
 export const PhotoCard = ({ photoId, title, thumbnail }) => {
   return (
-    <Link to={`/photo/${photoId}`} >
+    <Link data-cy="photo-link" to={`/photo/${photoId}`} >
       <section className="p-2 flex flex-col w-full border-2 border-transparent  hover:border-orange rounded-lg bg-purple-300 overflow-hidden">
         
         <div className="flex">
           <div className="flex justify-center items-center bg-orange  w-1/6">
-            <p className="font-raleway font-semibold text-lg text-purple-300">{photoId}</p>
+            <p data-cy="photo-id" className="font-raleway font-semibold text-lg text-purple-300">{photoId}</p>
           </div>
           <div className="flex justify-center items-center w-5/6 h-20 p-2 space-x-1 bg-purple-200 ">
-            <p className="font-raleway text-white text-center">{title}</p>
+            <p data-cy="photo-title" className="font-raleway text-white text-center">{title}</p>
           </div>
         </div>
-        <img src={thumbnail} alt={title} />
+        <img data-cy="photo-thumb" src={thumbnail} alt={title} />
       </section>
     </Link>
   )

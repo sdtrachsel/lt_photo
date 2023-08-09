@@ -29,6 +29,12 @@ describe('Albums/Landing Page', () => {
     cy.get('@ids').last().should('have.text', "10")
    })
 
+   it('Should link the albums to the correct album page', () => {
+    cy.getBySel('album-link').as('links')
+    cy.get('@links').first().should('have.attr', 'href', '/album/1')
+    cy.get('@links').last().should('have.attr', 'href', '/album/10')
+  })
+
    it('should display a search bar', () => {
     cy.getBySel('search-label').should('contain', "Search:")
     cy.getBySel('search-bar').should('have.attr', 'placeholder', 'Search by Album Title or ID')
@@ -48,4 +54,25 @@ describe('Albums/Landing Page', () => {
     cy.get('@titles').first().should('have.text', "quidem molestiae enim")
     cy.get('@titles').last().should('have.text', "enim impedit quibusdam illo est")
    });
+
+   it('should display the loading component while fetching photo', () => {
+    cy.intercept('GET', 'https://jsonplaceholder.typicode.com/albums', {
+      statusCode: 200,
+      fixture: 'albums.json',
+      delayMs: 100
+    })
+      .as('getAlbums');
+      cy.visit('http://localhost:3000/');
+    cy.getBySel("loader").should('be.visible')
+  });
+
+  it('should display the Error component on network failure', () => {
+    cy.intercept('GET', 'https://jsonplaceholder.typicode.com/albums', {
+      statusCode: 500,
+      body: 'An error occurred', 
+    }).as('getAlbumError');
+    cy.visit('http://localhost:3000/');
+    cy.wait('@getAlbumError');
+    cy.getBySel('error-message').should('be.visible')
+  });
 })
