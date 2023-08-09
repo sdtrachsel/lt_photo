@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <header >
       <Link to='/' className="inline-block">
-        <img className="w-fit cursor-pointer" src={logo} alt="logo" />
+        <img className="w-9/12 cursor-pointer" src={logo} alt="logo" />
       </Link>
     </header>
   )

@@ -29,11 +29,11 @@ export const Album = () => {
     if (isLoading) {
       return <Loader />
     }
-  
+
     const filteredPhotos = photos.filter(photo => {
       return photo.title.toLowerCase().includes(searchValue.toLowerCase()) || photo.id.toString().includes(searchValue);
     })
-    
+
     const cards = filteredPhotos.map(photo => {
       return <PhotoCard
         key={photo.id}
@@ -56,7 +56,8 @@ export const Album = () => {
 
   return (
     <div>
-      <section className="p-4">
+      <h2 className="p-2 font-raleway font-semibold text-3xl text-orange">Album {albumId} </h2>
+      <section className="p-4 flex">
         <label htmlFor="search" className="font-raleway font-semibold text-2xl text-orange pr-2">Search:</label>
         <input
           id="search"
@@ -64,10 +65,9 @@ export const Album = () => {
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
           placeholder="Search by Photo Title or ID"
-          className="w-3/5 h-8 p-2 rounded-lg"
+          className="w-full h-8 p-2 rounded-lg"
         />
       </section>
-      <h2 className="p-2 font-raleway font-semibold text-3xl text-orange">Album {albumId} </h2>
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-auto gap-4">
         {photoCards()}
       </section>
