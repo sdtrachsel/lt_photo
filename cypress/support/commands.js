@@ -23,3 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+//yields elements with a data-test attribute that match a specified selector.
+Cypress.Commands.add('getBySel', (selector, ...args) => {
+  return cy.get(`[data-cy=${selector}]`, ...args)
+})

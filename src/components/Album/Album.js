@@ -58,8 +58,9 @@ export const Album = () => {
     <div>
       <h2 className="p-2 font-raleway font-semibold text-3xl text-orange">Album {albumId} </h2>
       <section className="p-4 flex">
-        <label htmlFor="search" className="font-raleway font-semibold text-2xl text-orange pr-2">Search:</label>
+        <label data-cy="search-label" htmlFor="search" className="font-raleway font-semibold text-2xl text-orange pr-2">Search:</label>
         <input
+          data-cy="search-bar"
           id="search"
           type="search"
           value={searchValue}
