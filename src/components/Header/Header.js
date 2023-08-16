@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
-    <header >
-      <Link to='/' className="inline-block">
-        <img className="w-9/12 cursor-pointer" src={logo} alt="logo" />
+    <header data-cy="hdr" >
+      <Link data-cy="hdr-link" to='/' className="inline-block">
+        <img data-cy="logo" className="w-9/12 cursor-pointer" src={logo} alt="logo" />
       </Link>
     </header>
   )

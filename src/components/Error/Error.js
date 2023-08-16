@@ -8,7 +8,7 @@ export const Error = ({ errorMsg }) => {
   return (
     <section className="min-h-full p-11">
       <h2 className="text-4xl font-raleway text-orange p-2">Opppsss...</h2>
-      <p className="text-white p-2">{message}</p>
+      <p data-cy="error-message" className="text-white p-2">{message}</p>
     </section>
   )
 }

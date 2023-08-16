@@ -18,6 +18,7 @@ export const Photo = () => {
       setPhoto(data)
       setLoading(false)
     } catch (err) {
+      console.log(err.message)
       setError(true)
       setErrorMsg(err.message);
       setLoading(false)
@@ -40,13 +41,13 @@ export const Photo = () => {
     <section className="flex flex-col justify-center border border-white">
       <div className="flex">
         <div className="flex justify-center items-center bg-orange  w-1/6">
-          <p className="font-raleway font-semibold text-2xl text-purple-300">{photoId}</p>
+          <p data-cy="photo-id"className="font-raleway font-semibold text-2xl text-purple-300">{photoId}</p>
         </div>
         <div className="flex justify-center items-center w-5/6 h-20 p-2 space-x-1 bg-purple-200 ">
-          <p className="font-raleway text-white text-center text-2xl">{photo.title}</p>
+          <p data-cy="photo-title" className="font-raleway text-white text-center text-2xl">{photo.title}</p>
         </div>
       </div>
-      <img src={photo.url} alt={photo.title} />
+      <img data-cy="photo-img" src={photo.url} alt={photo.title} />
     </section>
   )
 }
